@@ -1,0 +1,41 @@
+version: '3'
+services:
+  master:
+    build:
+      context: .
+      dockerfile: Dockerfile.master
+    ports:
+      - "6000:6000"
+    tty: true
+
+  node-1:
+    build:
+      context: .
+      dockerfile: Dockerfile.node
+    ports:
+      - "6001:6001" # Expose a port for node-1, you can choose any port number you prefer
+    tty: true
+
+  node-2:
+    build:
+      context: .
+      dockerfile: Dockerfile.node
+    ports:
+      - "6002:6002" # Expose a port for node-2
+    tty: true
+
+  node-3:
+    build:
+      context: .
+      dockerfile: Dockerfile.node
+    ports:
+      - "6003:6003" # Expose a port for node-3
+    tty: true
+
+  node-4:
+    build:
+      context: .
+      dockerfile: Dockerfile.node
+    ports:
+      - "6004:6004" # Expose a port for node-4 
+    tty: true
