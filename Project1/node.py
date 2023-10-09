@@ -8,13 +8,9 @@ try:
     # Connect to the master server
     node_socket.connect(master_address)
 
-    # Send data to the master
-    message = "BROADCAST:Hello from the node!"  
-    node_socket.sendall(message.encode())
-
-    # Receive a response from the master
+    # Receive a message from the master
     data = node_socket.recv(1024).decode()
-    print(f"Received response from the master: {data}")
+    print(f"Received message from the master: {data}")
 
 finally:
     # Close the connection with the master
