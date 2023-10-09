@@ -1,0 +1,13 @@
+# Use an official Python runtime as a parent image
+FROM python:3
+# Set the working directory to /app
+WORKDIR /app
+
+# Copy the current directory contents into the container at /app
+COPY . /app
+
+# Install any dependencies that your master.py script requires (if any)
+# RUN pip install some-package
+
+# Specify the command to run when the container starts
+CMD ["python", "node.py"]
