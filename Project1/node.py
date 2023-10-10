@@ -1,10 +1,6 @@
 import socket
-import time
-import csv
 
-communication = 'Communication.csv'
 def main():
-    
     # Create a set to store received multicast messages
     received_messages = set()
 
@@ -19,7 +15,6 @@ def main():
         # Receive a message from the master (TCP)
         data = node_socket.recv(1024).decode()
         print(f"Received message from the master: {data}")
-        log_communication("Broadcast", socket.gethostbyname('master'), 6000, socket.gethostbyname(socket.gethostname()), 6000, len(data))
 
     finally:
         # Close the connection with the master (TCP)
@@ -46,14 +41,6 @@ def main():
         if message not in received_messages:
             received_messages.add(message)
             print(f"Received multicast message: {message}")
-            log_communication("Multicast", '0.0.0.0', multicast_port, multicast_group, multicast_port, len(message))
 
-def log_communication(protocol, source_ip, source_port, destination_ip, destination_port, length):
-    current_time = time.time()
-    log_entry = [protocol, current_time, source_ip, destination_ip, source_port, destination_port, length]
-
-    with open(communication, 'a', newline='') as csv_file:
-        csv_writer = csv.writer(csv_file)
-        csv_writer.writerow(log_entry)
 if __name__=='__main__':
     main()
